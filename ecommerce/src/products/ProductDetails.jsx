@@ -40,7 +40,7 @@ const ProductDetails = (props) => {
     };
 
     fetchData();
-  }, [2]);
+  }, [slug]);
 
 
   return (
@@ -70,8 +70,7 @@ const ProductDetails = (props) => {
                     />
                   )
                 ))
-              ) : (
-                <p>No images available</p> // Fallback content if no images
+              ) : (null 
               )}
               {/* {
               product1?.image?.map((item,i) => {
