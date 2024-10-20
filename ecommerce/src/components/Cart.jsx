@@ -16,8 +16,8 @@ export const Cart = () => {
           {/* <img src={urlFor(item?.image[0])} alt="img"  /> */}
           <div className='item-desc'>
             <div className='flex top'>
-              <h5>{item.name}</h5>
-              <h4>{item.price}</h4>
+              <h5>{item?.name}</h5>
+              <h4>{item?.price}</h4>
             </div>
           </div>
         </div>))}
@@ -67,7 +67,7 @@ export const Cart = () => {
                               <span className="minus" onClick={()=>{
                                 toggleCartitemQuantityt(item._id,'dec')
                               }}><AiOutlineMinus /> </span>
-                              <span className="num" >{item.quantity }</span>
+                              <span className="num" >{item?.quantity }</span>
                               <span className="plus" onClick={()=>{
                                 toggleCartitemQuantityt(item._id,'inc')
                               }}><AiOutlinePlus /> </span>

@@ -27,12 +27,12 @@ export const StateContext = ({ children }) => {
 
   const onAdd = (product, quantity) => {
     debugger;
-    const checkProductInCart = cartItems.find((item) => item.id === product._id)
+    const checkProductInCart = cartItems.find((item) => item._id === product._id)
     setTotalPrice((prevTotalPrice) => prevTotalPrice + product.price * quantity);
     setTotalQuantities((prevQuantity) => prevQuantity + quantity)
     if (checkProductInCart) {
       const updatedCartItem = cartItems.map((cartProduct) => {
-        if (cartProduct.id == product._id) {
+        if (cartProduct._id == product._id) {
           return {
             ...cartProduct,
             quantity: cartProduct.quantity + quantity
@@ -52,13 +52,18 @@ export const StateContext = ({ children }) => {
 
   }
 
-  const onRemove=(product)=>{
-    foundProduct = cartItems.find((item) => item._id === product._id);
-    const newcartItems = cartItems.filter((item) => item._id !== product._id);
-
-    setTotalPrice((prevTotalPrice)=> prevTotalPrice - foundProduct.price * foundProduct.quantity);
-    setTotalQuantities((prevTotalqty)=>{prevTotalqty - foundProduct.quantity })
-    setCartItems(newcartItems);
+  const onRemove = (product) => {
+    const foundProduct = cartItems.find((item) => item._id === product._id);
+    const newCartItems = cartItems.filter((item) => item._id !== product._id);
+  
+    // Ensure foundProduct is not undefined to avoid errors
+    if (foundProduct) {
+      setTotalPrice((prevTotalPrice) => prevTotalPrice - foundProduct.price * foundProduct.quantity);
+      setTotalQuantities((prevTotalQuantities) => prevTotalQuantities - foundProduct.quantity);
+      setCartItems(newCartItems);
+    } else {
+      console.error("Product not found in the cart.");
+    }
   }
 
   const toggleCartitemQuantityt = (id, value) => {
