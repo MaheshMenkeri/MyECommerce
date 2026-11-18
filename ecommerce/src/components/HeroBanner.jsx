@@ -17,7 +17,9 @@ const HeroBanner = ({ heroBanner }) => {
     );
   }
 
-  const image = heroBanner.image?.asset ? urlFor(heroBanner.image).width(900).url() : null;
+  const image = heroBanner.image?.asset
+    ? urlFor(heroBanner.image).width(1400).fit('max').auto('format').quality(92).url()
+    : null;
   const slug = heroBanner.product?.slug?.current || heroBanner.product?.slug || heroBanner.product;
 
   return (
@@ -29,7 +31,7 @@ const HeroBanner = ({ heroBanner }) => {
         {slug ? <Link className="hero-cta" to={`/ProductDetails/${slug}`}>{heroBanner.buttonText || 'Shop now'}</Link>
           : <a className="hero-cta" href="#products">{heroBanner.buttonText || 'Shop now'}</a>}
       </div>
-      {image && <img src={image} alt={heroBanner.midText || 'Featured headphones'} className="hero-banner-image" />}
+      {image && <img src={image} alt={heroBanner.midText || 'Featured headphones'} className="hero-banner-image" loading="eager" decoding="async" />}
       <div className="hero-side-note">ENGINEERED FOR<br />YOUR EVERYDAY</div>
     </section>
   );

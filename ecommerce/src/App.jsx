@@ -35,6 +35,8 @@ function App() {
     return () => { active = false; };
   }, []);
 
+  const footerBanner = bannerData[1] || (bannerData[0] ? { ...bannerData[0], image: null } : null);
+
   return (
     <>
       <Navbar />
@@ -60,7 +62,7 @@ function App() {
             <p className="store-message">Products will be available soon.</p>
           )}
         </section>
-        <FooterBanner footerBanner={bannerData[0]} />
+        <FooterBanner footerBanner={footerBanner} />
       </main>
     </>
   );
